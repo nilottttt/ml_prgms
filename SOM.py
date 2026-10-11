@@ -10,15 +10,15 @@ y = iris.target
 target_names = iris.target_names
 scaler = MinMaxScaler()
 X_scaled = scaler.fit_transform(X)
-# Initialize and train SOM
+
 som = MiniSom(x=10, y=10, input_len=X_scaled.shape[1], sigma=1.0, learning_rate=0.5)
 som.random_weights_init(X_scaled)
 som.train_random(X_scaled, num_iteration=200)
-# Plot the SOM Distance Map (U-Matrix)
+
 plt.figure(figsize=(10, 8))
-plt.pcolor(som.distance_map().T, cmap='coolwarm') # U-Matrix
+plt.pcolor(som.distance_map().T, cmap='coolwarm') 
 plt.colorbar(label='Distance')
-# Overlay the iris class labels
+
 markers = ['o', 's', 'D']
 colors = ['r', 'g', 'b']
 for i, x in enumerate(X_scaled):
